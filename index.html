@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الأقفال الذكية - إبداع تقني</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-white': '#FFFFFF',
+                        'secondary-gray': '#F7FAFC',
+                        'accent-blue': '#2563EB', // لون مميز للأزرار والتفاعل
+                        'text-dark': '#1A202C',
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'custom-light': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03)',
+                        'custom-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* لجعل Three.js يعمل بشكل صحيح داخل الحاوية */
+        .product-3d-container {
+            width: 100%;
+            height: 250px; /* ارتفاع مناسب لعرض الـ 3D */
+            position: relative;
+        }
+    </style>
+</head>
+<body class="bg-primary-white font-sans text-text-dark antialiased">
+
+    <header class="sticky top-0 z-50 bg-primary-white border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-text-dark">الأقفال الذكية <span class="text-accent-blue">Pro</span></h1>
+            <nav class="space-x-4 space-x-reverse hidden md:flex">
+                <a href="#" class="text-lg font-medium hover:text-accent-blue transition duration-150">الرئيسية</a>
+                <a href="#" class="text-lg font-medium hover:text-accent-blue transition duration-150">المنتجات</a>
+                <a href="#" class="text-lg font-medium hover:text-accent-blue transition duration-150">الدعم</a>
+            </nav>
+            <button class="bg-accent-blue text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-150 transform hover:scale-105">
+                سلة المشتريات (0)
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 class="text-4xl font-black mb-12 text-center">اكتشف أمان المستقبل</h2>
+
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+    </main>
+
+    <footer class="bg-secondary-gray mt-16 py-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+            <p>&copy; 2025 الأقفال الذكية Pro. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+            "three/examples/jsm/loaders/GLTFLoader.js": "https://unpkg.com/three@0.158.0/examples/jsm/loaders/GLTFLoader.js"
+          }
+        }
+    </script>
+
+    <script type="module" src="./script.js"></script>
+</body>
+</html>
