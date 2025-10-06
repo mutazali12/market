@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة تحكم الأدمن - الأقفال الذكية</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'accent-blue': '#2563EB',
+            'text-dark': '#1A202C',
+            'secondary-gray': '#F7FAFC',
+          },
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-secondary-gray font-sans text-text-dark p-6">
+
+  <header class="mb-8">
+    <h1 class="text-4xl font-black text-center text-accent-blue">لوحة تحكم الأدمن</h1>
+    <p class="text-center text-gray-600 mt-2">إدارة المنتجات في متجر الأقفال الذكية</p>
+  </header>
+
+  <section class="bg-white p-6 rounded-lg shadow-md mb-10">
+    <h2 class="text-2xl font-bold mb-4">إضافة منتج جديد</h2>
+    <form id="add-product-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="text" placeholder="اسم المنتج" class="border p-2 rounded" required />
+      <input type="text" placeholder="الوصف" class="border p-2 rounded" required />
+      <input type="number" placeholder="السعر" class="border p-2 rounded" required />
+      <input type="url" placeholder="رابط الصورة" class="border p-2 rounded" required />
+      <button type="submit" class="col-span-2 bg-accent-blue text-white py-2 rounded hover:bg-blue-700">إضافة المنتج</button>
+    </form>
+  </section>
+
+  <section class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">قائمة المنتجات</h2>
+    <div id="admin-products-list" class="space-y-4">
+      <!-- المنتجات ستظهر هنا -->
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('add-product-form');
+    const productList = document.getElementById('admin-products-list');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const inputs = form.querySelectorAll('input');
+      const [name, desc, price, image] = Array.from(inputs).map(input => input.value);
+
+      const productCard = document.createElement('div');
+      productCard.className = 'border p-4 rounded-lg bg-secondary-gray flex justify-between items-center';
+
+      productCard.innerHTML = `
+        <div>
+          <h3 class="text-xl font-bold">${name}</h3>
+          <p class="text-gray-600">${desc}</p>
+          <p class="text-accent-blue font-semibold">السعر: ${price} جنيه</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <img src="${image}" alt="${name}" class="w-16 h-16 object-cover rounded" />
+          <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700">حذف</button>
+        </div>
+      `;
+
+      productCard.querySelector('.delete-btn').addEventListener('click', () => {
+        productCard.remove();
+      });
+
+      productList.appendChild(productCard);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
